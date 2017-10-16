@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: app
+  namespace: dev
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app
+          image: 'quay.io/bannerbschafer/k8s-demo'
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            periodSeconds: 15
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: ENV_VAR
+              value: "Value!!!!!!"

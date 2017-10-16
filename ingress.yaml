@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: dev
+spec:
+  rules:
+    - host: fd.dev
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: app-service
+              servicePort: 80
