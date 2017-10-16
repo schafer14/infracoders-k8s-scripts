@@ -5,7 +5,7 @@ metadata:
   namespace: dev
 spec:
   selector:
-    app: app
+    app: fd-app
   ports:
     - protocol: TCP
       port: 80
